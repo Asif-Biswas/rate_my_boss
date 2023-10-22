@@ -1,0 +1,91 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+{% block body %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+
+
+
+<div class="container my-5">
+    <div class="card-profile mx-2 my-4">
+
+        <section class="wrapper product" style="width: 100%; margin: 0 16px; justify-content: start">
+            <h3 class="section-name" style="text-align: left; color: black; margin-bottom: 12px; margin-left: 8px">
+                {% if request.GET.q %}
+                    <span style="color: gray;">Showing address result for:</span> {{request.GET.q}}
+                {% else %}
+                    <span style="color: gray;">Showing all addresses</span>
+                {% endif %}
+            </h3>
+            {% if not addresses %}
+                <div class="section-name" style="text-align: center; color: black; margin-bottom: 12px; margin-left: 8px">
+                    No result found
+                </div>
+            {% endif %}
+            {% for roommate in addresses %}
+            <a href="{% url 'main:address' roommate.id %}" style="text-decoration: none; color: inherit">
+                    <div class="search-main-div2">
+                        <i class="fas fa-arrow-right"></i>
+               
+                        <div class="search-main-div">
+                            <div class="div1">
+                                <h2 class="p-4 div1-text fw-bold text-center">
+                                    {{roommate.get_average_rating}}
+                                </h2>
+                                {% for star in roommate.get_star %}
+                                    <i class="{{star}}" style="color: rgb(230, 185, 41);"></i>
+                                {% endfor %}
+                            </div>
+                            <div class="div2">
+                                <div class="d-flex">
+                                    <img src="{% if roommate.photo %}{{ roommate.photo.url }}{% else %}{% static 'images/user.png' %}{% endif %}"
+                                        alt="img"
+                                        class="" width="70" height="70">
+                                    <div class="ms-3">
+                                        <h3 class="mb-0 ms-1">
+                                            {{roommate.name}}
+                                        </h3>
+                                        <div class="ms-1">Address: {{roommate.address}}</div>
+                                        <div class="mb-3 ms-1">Total attribute ratings: {{roommate.get_total_rating}}</div>
+                                
+                                    </div>
+                                </div>
+                                {% for r in roommate.get_top_two_ratings %}
+                                <div class="div2-maindiv">
+                                    <p class="fw-bold mb-0" style="width: 150px">
+                                        {{r.attribute}}
+                                    </p>
+                                    <div class="emtydiv">
+                                        <p class=" mb-0 h-100
+                                        {% if r.get_percentage < 30 %}
+                                            bg-danger
+                                        {% elif r.get_percentage < 70 %}
+                                            bg-warning
+                                        {% else %}
+                                            bg-success
+                                        {% endif %}
+                                        " style="width:{{r.get_percentage}}%"></p>
+                                    </div>
+                                    <p class="fw-bold mb-0" style="width: 50px">
+                                        {{r.get_percentage}}%
+                                    </p>
+                                </div>
+                                {% endfor %}
+            
+            
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </section>
+
+    </div>
+</div>
+
+
+
+  {% endblock %}

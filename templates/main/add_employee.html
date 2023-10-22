@@ -1,0 +1,169 @@
+{% extends "includes/base.html" %}
+{% load static %}
+
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/addroommate.css' %}">
+
+
+<div class="container my-5">
+
+    <h2 class="text-center my-3">Add Boss or Employee</h2>
+
+    <form class="p-4 border rounded shadow attributes__container_form" action="{% url "main:add_employee" %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p class="mb-0 mb-1">Name:</p>
+        <input type="text" class="form-control mb-3" required placeholder="Enter Name" name="name">
+        
+        <p class="mb-0 mb-1">Employee type:</p>
+        <select class="form-select mb-3" aria-label="Default select example" name="employee_type">
+            <option selected value="Boss">Boss</option>
+            <option value="Manager">Manager</option>
+            <option value="Employee">Employee</option>
+        </select>
+        
+        <p class="mb-0 mb-1">Company:</p>
+        <input type="text" class="form-control mb-3" placeholder="Enter Company name" name="address" list="suggestion">
+        <datalist id="suggestion">
+            {% for address in all_addresses %}
+            <option value="{{ address.name }}">
+            {% endfor %}
+        </datalist>
+        <p class="mb-0 mb-1">Email:</p>
+        <input type="text" class="form-control mb-3" placeholder="Enter Email" name="email">
+
+        <p class="mb-0 mb-1">About:</p>
+        <textarea class="form-control mb-3" placeholder="Enter About" name="about"></textarea>
+
+        <p class="mb-0 mb-1">Social Media Link:</p>
+        <input type="text" class="form-control mb-3" placeholder="Enter Social Media Link" name="social_media_link">
+
+        <p class="mb-0 mb-1">Picture:</p>
+        <input type="file" name="photo" id="picture__input" class="form-control mb-3">
+
+        <div class="shadow p-3 ">
+            <p class="mb-0 mb-1">Attributes:</p>
+            <div class="attributes__container">
+                {% for attribute in default_attributes %}
+                <div class="my_attribute">
+                    <div class="d-flex justify-content-between align-items-center mb-2 gap-3">
+                        <input required type="text" class="form-control " placeholder="Attribute Name" value="{{ attribute.attribute }}">
+                        <div class="star-rating">
+                            <input type="radio" id="5-stars{{ forloop.counter }}d" name="rating{{ forloop.counter }}d" value="5" onclick="checkThis(this)" />
+                            <label for="5-stars{{ forloop.counter }}d" class="star">&#9733;</label>
+                            <input type="radio" id="4-stars{{ forloop.counter }}d" name="rating{{ forloop.counter }}d" value="4" onclick="checkThis(this)" />
+                            <label for="4-stars{{ forloop.counter }}d" class="star">&#9733;</label>
+                            <input type="radio" id="3-stars{{ forloop.counter }}d" name="rating{{ forloop.counter }}d" value="3" checked onclick="checkThis(this)" />
+                            <label for="3-stars{{ forloop.counter }}d" class="star">&#9733;</label>
+                            <input type="radio" id="2-stars{{ forloop.counter }}d" name="rating{{ forloop.counter }}d" value="2" onclick="checkThis(this)" />
+                            <label for="2-stars{{ forloop.counter }}d" class="star">&#9733;</label>
+                            <input type="radio" id="1-star{{ forloop.counter }}d" name="rating{{ forloop.counter }}d" value="1" onclick="checkThis(this)" />
+                            <label for="1-star{{ forloop.counter }}d" class="star">&#9733;</label>
+                        </div>
+                        <button onclick="deleteAttribute(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                    </div>
+                    {% comment %} <textarea class="form-control mb-3" placeholder="Enter some text..."></textarea> {% endcomment %}
+                </div>
+                {% endfor %}
+            </div>
+            
+            <button onclick="addNewAttribute()" type="button" class="btn btn-warning mt-3 mb-3">Add New Attribute</button>
+            <input type="hidden" name="attributes" id="attributes__input">
+        </div>
+
+        <div class="text-end mt-5">
+            <button onclick="submitBtn()" type="button" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+    </div>
+
+</div>
+
+
+<div class="attributes__container_copy d-none">
+    <div>
+        <div class="d-flex justify-content-between align-items-center mb-2 gap-3">
+            <input required type="text" class="form-control " placeholder="Attribute Name">
+            <div class="star-rating">
+                <input type="radio" id="5-stars" name="rating" value="5" onclick="checkThis(this)" />
+                <label for="5-stars" class="star">&#9733;</label>
+                <input type="radio" id="4-stars" name="rating" value="4" onclick="checkThis(this)" />
+                <label for="4-stars" class="star">&#9733;</label>
+                <input type="radio" id="3-stars" name="rating" value="3" checked onclick="checkThis(this)" />
+                <label for="3-stars" class="star">&#9733;</label>
+                <input type="radio" id="2-stars" name="rating" value="2" onclick="checkThis(this)" />
+                <label for="2-stars" class="star">&#9733;</label>
+                <input type="radio" id="1-star" name="rating" value="1" onclick="checkThis(this)" />
+                <label for="1-star" class="star">&#9733;</label>
+            </div>
+            <button onclick="deleteAttribute(this)" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+        </div>
+        {% comment %} <textarea class="form-control mb-3" placeholder="Enter some text..."></textarea> {% endcomment %}
+    </div>
+</div>
+
+
+<script>
+    const attributes__container = document.querySelector('.attributes__container');
+    const attributes__container_copy = document.querySelector('.attributes__container_copy');
+    const attributes__input = document.querySelector('#attributes__input');
+
+    const addNewAttribute = () => {
+        const newAttribute = attributes__container_copy.cloneNode(true);
+        const newAttributeChild = newAttribute.children[0];
+        newAttributeChild.classList.add('my_attribute');
+
+        const starRating = newAttributeChild.querySelector('.star-rating');
+        const newAttributeLength = document.querySelectorAll('.my_attribute').length;
+        const allChildOfStarRating = starRating.children;
+        for(let i=0; i<allChildOfStarRating.length; i++){
+            if (allChildOfStarRating[i].tagName == 'INPUT'){
+                allChildOfStarRating[i].setAttribute('name', `rating${newAttributeLength}`);
+                allChildOfStarRating[i].setAttribute('id', `rating${newAttributeLength}${i}`);
+            } else if (allChildOfStarRating[i].tagName == 'LABEL'){
+                allChildOfStarRating[i].setAttribute('for', `rating${newAttributeLength}${i-1}`);
+            }
+        }
+
+
+        attributes__container.appendChild(newAttributeChild);
+        
+    }
+    addNewAttribute();
+
+    function deleteAttribute(e) {
+        e.parentElement.parentElement.remove();
+    }
+
+    function submitBtn(){
+        const attributes = [];
+        const attributes__container = document.querySelectorAll('.my_attribute');
+        attributes__container.forEach((attribute) => {
+            const checkedStar = attribute.querySelector('input[type="radio"]:checked');
+            let data = {
+                name: attribute.children[0].children[0].value,
+                rating: checkedStar.value
+            }
+            console.log(data);
+            attributes.push(data);
+        })
+        attributes__input.value = JSON.stringify(attributes);
+        
+        document.querySelector('.attributes__container_form').submit();
+    }
+
+    function checkThis(e){
+        console.log(e);
+        const allChildOfStarRating = e.parentElement.children;
+        for(let i=0; i<allChildOfStarRating.length; i++){
+            if (allChildOfStarRating[i].tagName == 'INPUT'){
+                allChildOfStarRating[i].checked = false;
+            }
+        }
+        e.checked = true;
+    }
+
+</script>
+
+
+{% endblock %}

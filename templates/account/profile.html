@@ -1,0 +1,192 @@
+{% extends 'includes/base.html' %}
+{% load static %}
+{% block body %}
+
+{% block head %}
+<link href="{% static 'css/profile.css' %}" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+
+
+
+<div class="max-width-1100">
+    <div class="card-profile mx-2 my-4">
+        <div class="cover resp-cover">
+            <img class="profile-picture resp-profile-picture" 
+                {% if userProfile.profile_picture %}
+                    src="{{ userProfile.profile_picture.url }}"
+                {% else %}
+                    src="{% static 'images/user.png' %}"
+                {% endif %}
+                 alt="Profile Picture">
+            {% if request.user == userProfile.user %}
+                <button type="button" class="btn btn-primary btn-sm edit-profile-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <i class="fas fa-edit"></i> Edit Profile
+                </button>
+            {% endif %}
+        </div>
+        <div class="p-4 md-mt-5">
+            <h3 class="mb-0">
+                {{user.first_name}} {{user.last_name}}
+            </h3>
+            <div>
+                <span>@{{ userProfile.user }}</span>
+                <!-- <span class="bg-secondary text-white py-1 px-2 rounded sm-font ml-2">Rapper</span>/span> -->
+            </div>
+            <!-- about -->
+            <div class="mt-4">
+                <h4 class="mb-0">About me</h4>
+                <p class="mt-1">
+                    {{ userProfile.about_me }}
+                </p>
+            </div>
+        </div>
+
+        <section class="wrapper product" style="width: 100%; margin: 0 16px; justify-content: start">
+            <h3 class="section-name" style="text-align: left; color: black; margin-bottom: 12px; margin-left: 8px">Roommate ratings</h3>
+            {% for roommate in roommates %}
+                <a href="{% url 'main:roommate' roommate.id %}" style="text-decoration: none; color: inherit">
+                    <div class="search-main-div2">
+                        <i class="fas fa-arrow-right"></i>
+               
+                        <div class="search-main-div">
+                            <div class="div1">
+                                <h2 class="p-4 div1-text fw-bold text-center">
+                                    {{roommate.get_average_rating}}
+                                </h2>
+                                {% for star in roommate.get_star %}
+                                    <i class="{{star}}" style="color: rgb(230, 185, 41);"></i>
+                                {% endfor %}
+                            </div>
+                            <div class="div2">
+                                <h3 class="mb-0 ms-1">
+                                    {{roommate.name}}
+                                </h3>
+                                <div class="mb-3 ms-1">Total attribute ratings: {{roommate.get_total_rating}}</div>
+                                {% for r in roommate.get_top_two_ratings %}
+                                <div class="div2-maindiv">
+                                    <p class="fw-bold mb-0" style="width: 150px">
+                                        {{r.attribute}}
+                                    </p>
+                                    <div class="emtydiv">
+                                        <p class=" mb-0 h-100
+                                        {% if r.get_percentage < 30 %}
+                                            bg-danger
+                                        {% elif r.get_percentage < 70 %}
+                                            bg-warning
+                                        {% else %}
+                                            bg-success
+                                        {% endif %}
+                                        " style="width:{{r.get_percentage}}%"></p>
+                                    </div>
+                                    <p class="fw-bold mb-0" style="width: 50px">
+                                        {{r.get_percentage}}%
+                                    </p>
+                                </div>
+                                {% endfor %}
+            
+            
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </section>
+
+        <section class="wrapper product" style="width: 100%; margin: 0 16px; justify-content: start">
+            <h3 class="section-name" style="text-align: left; color: black; margin-bottom: 12px; margin-left: 8px">Address ratings</h3>
+            {% for roommate in addresses %}
+            <a href="{% url 'main:address' roommate.id %}" style="text-decoration: none; color: inherit">
+                    <div class="search-main-div2">
+                        <i class="fas fa-arrow-right"></i>
+               
+                        <div class="search-main-div">
+                            <div class="div1">
+                                <h2 class="p-4 div1-text fw-bold text-center">
+                                    {{roommate.get_average_rating}}
+                                </h2>
+                                {% for star in roommate.get_star %}
+                                    <i class="{{star}}" style="color: rgb(230, 185, 41);"></i>
+                                {% endfor %}
+                            </div>
+                            <div class="div2">
+                                <h3 class="mb-0 ms-1">
+                                    {{roommate.address}}
+                                </h3>
+                                <div class="mb-3 ms-1">Total attribute ratings: {{roommate.get_total_rating}}</div>
+                                {% for r in roommate.get_top_two_ratings %}
+                                <div class="div2-maindiv">
+                                    <p class="fw-bold mb-0" style="width: 150px">
+                                        {{r.attribute}}
+                                    </p>
+                                    <div class="emtydiv">
+                                        <p class=" mb-0 h-100
+                                        {% if r.get_percentage < 30 %}
+                                            bg-danger
+                                        {% elif r.get_percentage < 70 %}
+                                            bg-warning
+                                        {% else %}
+                                            bg-success
+                                        {% endif %}
+                                        " style="width:{{r.get_percentage}}%"></p>
+                                    </div>
+                                    <p class="fw-bold mb-0" style="width: 50px">
+                                        {{r.get_percentage}}%
+                                    </p>
+                                </div>
+                                {% endfor %}
+            
+            
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </section>
+    </div>
+</div>
+
+
+{% if request.user == userProfile.user %}
+<!-- Edit Profile Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <form class="modal-content" method="post" action="{% url 'account:edit_profile' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="edit-profile-modal-title">Edit Profile</h5>
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> -->
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="fullname">Full Name</label>
+                <input required type="text" class="form-control" name="fullname" id="fullname" placeholder="Enter full name" value="{{ userProfile.full_name }}">
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input required type="text" class="form-control" name="username" id="username" placeholder="Enter username" value="{{ request.user.username }}">
+            </div>
+            <div class="form-group">
+                <label for="about">About</label>
+                <textarea required class="form-control" name="bio" id="about" rows="3" placeholder="Write about you...">{{ userProfile.about_me }}</textarea>
+            </div>
+            <div class="form-group mt-1">
+                <label for="profile-picture">Profile Picture</label>
+                <input type="file" class="form-control-file" name="profile-picture" id="profile-picture">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+    </form>
+    </div>
+  </div>
+{% endif %}
+
+
+
+  {% endblock %}

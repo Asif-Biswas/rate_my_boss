@@ -1,0 +1,148 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate My Boss</title>
+    <link rel="stylesheet" href="{% static "css/index.css" %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="{% url "main:home" %}"><i class="fas fa-home pe-2"></i> Home</a>
+        <a href="{% url "account:profile" %}"><i class="fas fa-user pe-2"></i> Profile</a>
+        <a href="{% url "main:add_employee" %}"><i class="fas fa-person-booth pe-2"></i> Add Employee</a>
+        <a href="{% url "main:add_address" %}"><i class="fas fa-map-marked-alt pe-2"></i> Add Company</a>
+        <a href="{% url "main:all_employees" %}"><i class="fas fa-border-all pe-2"></i> All Employees</a>
+        <a href="{% url "main:all_addresses" %}"><i class="fas fa-hotel pe-2"></i> All Company</a>
+        <a href="{% url "account:logout" %}"><i class="fas fa-sign-out-alt pe-2"></i> Logout</a>
+      </div>
+    <div class="nav-con">
+        <div class="nav-con2">
+            <a href="{% url "main:home" %}" style="color: white; text-decoration: none"><h3>LoGo</h3></a>
+            <div class=" search-con">
+                <div class="dropdown">
+                    <button id="nav-btn" class="btn  dropdown-toggle border text-white" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Employee
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li onclick="cngNavElemets('Company')"><a class="dropdown-item" href="#">Company</a></li>
+                        <li onclick="cngNavElemets('Employee')"><a class="dropdown-item" href="#">Employee</a></li>
+                    </ul>
+                </div>
+                <form action="{% url "main:search_employee" %}" method="GET" id="nav-search-form">
+                    <input type="text" placeholder="Enter Boss name" name="q" class="nav-input" id="nav-input">
+                </form>
+            </div>
+            <div class="navber_link">
+                <a class="d-none d-lg-block" href="{% url "main:add_employee" %}">Add Employee</a>
+                <a class="d-none d-lg-block" href="{% url "main:add_address" %}">Add Company</a>
+                <a class="d-none d-lg-block" href="{% url "main:all_employees" %}">All Employees</a>
+                <a class="d-none d-lg-block" href="{% url "main:all_addresses" %}">All Company</a>
+        
+                {% if user.is_authenticated %}
+                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                {% else %}
+                <a class="btn btn-outline-light" href="{% url "account:login" %}">Login</a>
+                <a class="btn btn-outline-light" href="{% url "account:signup" %}">Signup</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-primary" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+    {% endif %}
+
+
+    {% block body %}{% endblock body %}
+
+
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+
+            <h3>Company<span>logo</span></h3>
+
+            <p class="footer-links">
+                <a href="{% url "main:home" %}" class="link-1">Home</a>
+                <a href="{% url "account:profile" %}">Profile</a>
+                <a href="{% url "main:add_employee" %}">Add Employee</a>
+                <a href="{% url "main:add_address" %}">Add Company</a>
+                <a href="{% url "account:logout" %}">Logout</a>
+            </p>
+
+            <p class="footer-company-name">Company Name © 2015</p>
+        </div>
+
+        <div class="footer-center">
+
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>444 S. Cedros Ave</span> Solana Beach, California</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+1.555.555.5555</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:support@company.com">support@company.com</a></p>
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+                <span>About the company</span>
+                Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor
+                lacus vehicula sit amet.
+            </p>
+
+            <!-- <div class="footer-icons">
+
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+
+            </div> -->
+
+        </div>
+
+    </footer>
+
+
+    <script src="{% static "js/index.js" %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+        
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</body>
+
+</html>

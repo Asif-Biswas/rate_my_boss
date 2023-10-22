@@ -1,0 +1,484 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600;700;800;900&family=Noto+Serif:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@1,300;1,400;1,500;1,700;1,900&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+
+}
+
+/* Resets */
+hr {
+    margin-left: 0;
+    max-width: 40px;
+}
+
+.nav-input{
+    padding: 7px 15px;
+    border-radius: 7px;
+    border: 0px solid #ccc;
+    width: 500px;
+}
+
+
+.sec1 {
+    width: 100%;
+    text-align: center;
+    height: 70vh;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(https://media.istockphoto.com/id/1460755337/photo/white-color-theme-modern-style-office-with-exposed-concrete-floor-and-a-lot-of-plant-3d.jpg?b=1&s=170667a&w=0&k=20&c=vjO4QhU7YP-UEdHsrECZH01Nvj0T5aqnoWSh02XdLeo=);
+ /* only background img blur */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.header-black {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70vh;
+    /* background: rgba(0, 0, 0, .5); */
+    background: black;
+    opacity: 70%;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600;700;800;900&family=Noto+Serif:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.header-main {
+    position: relative;
+    z-index: 1;
+    font-size: 45px;
+    font-weight: 500;
+    font-family: 'Poppins';
+}
+
+.header-main2 {
+    position: relative;
+    z-index: 1;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 25px;
+}
+.or{
+    position: relative;
+    z-index: 1;
+}
+
+.header-input {
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+    width: 100%;
+    margin: 20px auto;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    padding-left: 30px;
+    position: relative;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navber_link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0 0 0 ;
+
+
+}
+.nav-search-input{
+    width: 400px;
+    margin: 0 50px 0 0;
+    padding: 5px 20px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    /* give me inner box shadow */
+    box-shadow: inset 0 0 5px #ccc;
+    
+}
+.navber_link a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    opacity: 0.8;
+    font-weight: 500;
+
+
+}
+.search-con{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.nav-con {
+    /* position: fixed;
+    top: 0;
+    left: 0; */
+    width: 100%;
+    z-index: 2;
+    background-color: black;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.nav-con2 {
+    max-width: 1440px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    gap: 5px;
+    width: 100%;
+    z-index: 2;
+}
+
+
+.footer-distributed {
+    background: #000000;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    color: white;
+    text-align: left;
+    font: bold 16px sans-serif;
+    padding: 55px 50px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left {
+    width: 40%;
+}
+
+/* The company logo */
+
+.footer-distributed h3 {
+    color: #ffffff;
+    font: normal 36px 'Open Sans', cursive;
+    margin: 0;
+}
+
+.footer-distributed h3 span {
+    color: lightseagreen;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links {
+    color: #ffffff;
+    margin: 20px 0 12px;
+    padding: 0;
+}
+
+.footer-distributed .footer-links a {
+    display: inline-block;
+    line-height: 1.8;
+    font-weight: 400;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-distributed .footer-company-name {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center {
+    width: 35%;
+}
+
+.footer-distributed .footer-center i {
+    background-color: #33383b;
+    color: #ffffff;
+    font-size: 25px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 42px;
+    margin: 10px 15px;
+    vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope {
+    font-size: 17px;
+    line-height: 38px;
+}
+
+.footer-distributed .footer-center p {
+    display: inline-block;
+    color: #ffffff;
+    font-weight: 400;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.footer-distributed .footer-center p span {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+    color: lightseagreen;
+    text-decoration: none;
+    ;
+}
+
+.footer-distributed .footer-links a:before {
+    content: "|";
+    font-weight: 300;
+    font-size: 20px;
+    left: 0;
+    color: #fff;
+    display: inline-block;
+    padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+    content: none;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right {
+    width: 20%;
+}
+
+.footer-distributed .footer-company-about {
+    line-height: 20px;
+    color: #92999f;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+    display: block;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons {
+    margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #33383b;
+    border-radius: 2px;
+
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+
+    margin-right: 3px;
+    margin-bottom: 5px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+
+    .footer-distributed {
+        font: bold 14px sans-serif;
+    }
+
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right {
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .footer-distributed .footer-center i {
+        margin-left: 0;
+    }
+
+}
+
+
+
+/* Bustom button */
+.btn-primary {
+    background: #1096fc;
+    border: 0;
+
+    &:hover {
+        background: darken(#1096fc, 7%);
+    }
+}
+
+/* Features */
+.sec-features {
+    .row {
+        &:nth-of-type(n+2) {
+            margin-top: 160px;
+        }
+
+        &:last-of-type {
+            margin-bottom: 160px;
+        }
+    }
+
+    .feature-icon {
+        max-width: 150px;
+    }
+}
+
+/* Testimonials */
+.sec-testimonials {
+    padding-top: 128px;
+    padding-bottom: 128px;
+}
+
+/* Carousel */
+.carousel-indicators {
+    bottom: -30px;
+
+    li {
+        background: rgba(33, 33, 33, .1);
+
+        &:focus,
+        &:hover {
+            background: rgba(33, 33, 33, .5);
+        }
+    }
+
+    .active {
+        background: rgba(33, 33, 33, .75);
+    }
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    & {
+        color: #212121;
+    }
+
+    &:focus,
+    &:hover {
+        color: #111;
+    }
+}
+
+/* Footer */
+.footer {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    background: #212121;
+
+    li {
+        &:nth-of-type(n+2) {
+            margin-left: 8px;
+        }
+    }
+
+    a {
+        font-size: 18px;
+        color: rgba(255, 255, 255, .5);
+        transition: color .235s ease-in-out;
+
+        &:focus,
+        &:hover {
+            color: rgba(255, 255, 255, .25);
+        }
+    }
+}
+
+
+/* small device media screen */
+
+@media (max-width: 767px) {
+
+    /* Your CSS styles for small devices go here */
+    .header-main {
+        font-size: 30px;
+        font-weight: 500;
+        font-family: 'Poppins';
+    }
+
+    .header-main2 {
+        position: relative;
+        z-index: 1;
+        font-size: 20px;
+    }
+.search-con{
+    display: none;
+}
+
+    /* Add more styles as needed */
+}
+
+
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    font-size: 36px;
+    margin-right: 50px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
