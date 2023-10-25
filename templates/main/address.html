@@ -161,17 +161,17 @@
                         </p>
                         <div class="emtydiv">
                             <p class=" mb-0 h-100
-                            {% if r.get_percentage < 30 %}
+                            {% if r.get_this_percentage < 30 %}
                                 bg-danger
-                            {% elif r.get_percentage < 70 %}
+                            {% elif r.get_this_percentage < 70 %}
                                 bg-warning
                             {% else %}
                                 bg-success
                             {% endif %}
-                            " style="width:{{r.get_percentage}}%"></p>
+                            " style="width:{{r.get_this_percentage}}%"></p>
                         </div>
                         <p class="fw-bold mb-0" style="width: 50px">
-                            {{r.get_percentage}}%
+                            {{r.get_this_percentage}}%
                         </p>
                     </div>
                     {% endfor %}

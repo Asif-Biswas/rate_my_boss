@@ -94,6 +94,9 @@ class EmployeeRating(models.Model):
             total += rating.rating
         return int((total / (len(ratings)*5)) * 100)
     
+    def get_this_percentage(self):
+        return int((self.rating / 5) * 100)
+    
     def get_star(self):
         stars = []
         for i in range(1, 6):
@@ -192,6 +195,9 @@ class CompanyRating(models.Model):
         for rating in ratings:
             total += rating.rating
         return int((total / (len(ratings)*5)) * 100)
+    
+    def get_this_percentage(self):
+        return int((self.rating / 5) * 100)
     
     def get_star(self):
         stars = []

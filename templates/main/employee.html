@@ -24,6 +24,9 @@
                             <p class="text-secondary mb-1">Overall Score: 
                                 {{employee.get_average_rating}}
                             </p>
+                            <p class="text-secondary mb-1">Total user rated: 
+                                {{employee.get_total_user_rated}}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -52,6 +55,15 @@
                     <hr>
                     <div class="row">
                         <div class="col-sm-3">
+                            <h6 class="mb-0">Employee Type</h6>
+                        </div>
+                        <div class="col-sm-9 mb-0 text-secondary">
+                            {{ employee.employee_type }}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
                             <h6 class="mb-0">About</h6>
                         </div>
                         <div class="col-sm-9 mb-0 text-secondary">
@@ -61,13 +73,12 @@
                     <hr>
                     <div class="row">
                         <div class="col-sm-3">
-                            <h6 class="mb-0">Total user rated:</h6>
+                            <h6 class="mb-0">Social Media:</h6>
                         </div>
                         <div class="col-sm-9 mb-0 text-secondary">
-                            {{ employee.get_total_user_rated }}
+                            {{ employee.social_media_link }}
                         </div>
                     </div>
-                    <hr>
                 </div>
             </div>
 
@@ -174,17 +185,17 @@
                         </p>
                         <div class="emtydiv">
                             <p class=" mb-0 h-100
-                            {% if r.get_percentage < 30 %}
+                            {% if r.get_this_percentage < 30 %}
                                 bg-danger
-                            {% elif r.get_percentage < 70 %}
+                            {% elif r.get_this_percentage < 70 %}
                                 bg-warning
                             {% else %}
                                 bg-success
                             {% endif %}
-                            " style="width:{{r.get_percentage}}%"></p>
+                            " style="width:{{r.get_this_percentage}}%"></p>
                         </div>
                         <p class="fw-bold mb-0" style="width: 50px">
-                            {{r.get_percentage}}%
+                            {{r.get_this_percentage}}%
                         </p>
                     </div>
                     {% endfor %}

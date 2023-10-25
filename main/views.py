@@ -186,7 +186,8 @@ def search_employee(request):
             Q(company__name__icontains=q) |
             Q(email__icontains=q) |
             Q(about__icontains=q) |
-            Q(social_media_link__icontains=q)
+            Q(social_media_link__icontains=q
+              )
         ).distinct()
         context = {
             'employees': employees,
