@@ -314,7 +314,7 @@ def resetPassword(request):
 
 @login_required(login_url='account:login')
 def profile(request):
-    userProfile = UserProfile.objects.get(user=request.user)
+    userProfile, created = UserProfile.objects.get_or_create(user=request.user)
     roommateratings = EmployeeRating.objects.filter(user=request.user)
     addressesratings = CompanyRating.objects.filter(user=request.user)
 

@@ -482,3 +482,7 @@ hr {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+
+.select-style{
+    max-width: 100px;
+}

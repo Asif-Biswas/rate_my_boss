@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-import json
 
 # Create your models here.
 class UserProfile(models.Model):
@@ -10,7 +9,7 @@ class UserProfile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
-    def _str_(self):
+    def __str__(self):
         return self.user.username
     
 

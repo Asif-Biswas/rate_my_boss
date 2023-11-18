@@ -287,7 +287,8 @@ def all_addresses(request):
     return render(request, 'main/search_address.html', context)
 
 
-
+def test(request):
+    return render(request, 'main/test.html')
 
 
 

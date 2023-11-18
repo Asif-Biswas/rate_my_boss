@@ -45,6 +45,9 @@
 
         <section class="wrapper product" style="width: 100%; margin: 0 16px; justify-content: start">
             <h3 class="section-name" style="text-align: left; color: black; margin-bottom: 12px; margin-left: 8px">Roommate ratings</h3>
+            {% if not roommates %}
+                <p class="ms-5">No roommate ratings yet</p>
+            {% endif %}
             {% for roommate in roommates %}
                 <a href="{% url 'main:roommate' roommate.id %}" style="text-decoration: none; color: inherit">
                     <div class="search-main-div2">
@@ -96,6 +99,9 @@
 
         <section class="wrapper product" style="width: 100%; margin: 0 16px; justify-content: start">
             <h3 class="section-name" style="text-align: left; color: black; margin-bottom: 12px; margin-left: 8px">Address ratings</h3>
+            {% if not addresses %}
+                <p class="ms-5">No address ratings yet</p>
+            {% endif %}
             {% for roommate in addresses %}
             <a href="{% url 'main:address' roommate.id %}" style="text-decoration: none; color: inherit">
                     <div class="search-main-div2">

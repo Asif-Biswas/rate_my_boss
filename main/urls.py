@@ -16,4 +16,5 @@ urlpatterns = [
     path('rate-existing-address/<int:address_id>/', views.rate_existing_address, name='rate_existing_address'),
     path('all-employees/', views.all_employees, name='all_employees'),
     path('all-addresses/', views.all_addresses, name='all_addresses'),
+    path('test/', views.test, name='test')
 ]

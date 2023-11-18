@@ -29,10 +29,10 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url "main:home" %}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -41,6 +41,14 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
+
+            {% comment %} <a href="{% url "main:home" %}"><i class="fas fa-home pe-2"></i> Home</a>
+            <a href="{% url "account:profile" %}"><i class="fas fa-user pe-2"></i> Profile</a>
+            <a href="{% url "main:add_employee" %}"><i class="fas fa-person-booth pe-2"></i> Add Employee</a>
+            <a href="{% url "main:add_address" %}"><i class="fas fa-map-marked-alt pe-2"></i> Add Company</a>
+            <a href="{% url "main:all_employees" %}"><i class="fas fa-border-all pe-2"></i> All Employees</a>
+            <a href="{% url "main:all_addresses" %}"><i class="fas fa-hotel pe-2"></i> All Company</a>
+            <a href="{% url "account:logout" %}"><i class="fas fa-sign-out-alt pe-2"></i> Logout</a> {% endcomment %}
 
             <li class="nav-item">
                 <a class="nav-link" href="{% url "main:home" %}">
@@ -109,7 +117,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-0 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -208,7 +216,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="">
+                <div class="container-fluid">
 
                     {% block body %}{% endblock %}
 
@@ -238,7 +246,6 @@
     <!-- Custom scripts for all pages-->
     <script src="{% static "js/sb-admin-2.min.js" %}"></script>
     <script src="{% static "js/index.js" %}"></script>
-    
 </body>
 
 </html>
