@@ -320,13 +320,13 @@ def profile(request):
 
     roommates = []
     for roommaterating in roommateratings:
-        if roommaterating.roommate not in roommates:
-            roommates.append(roommaterating.roommate)
+        if roommaterating.employee not in roommates:
+            roommates.append(roommaterating.employee)
 
     addresses = []
     for addressrating in addressesratings:
-        if addressrating.address not in addresses:
-            addresses.append(addressrating.address)
+        if addressrating.company not in addresses:
+            addresses.append(addressrating.company)
     context = {
         'profilePage': True,
         'title': 'Profile',
